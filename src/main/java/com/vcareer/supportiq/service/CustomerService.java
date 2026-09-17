@@ -47,4 +47,15 @@ public class CustomerService {
 
         return customerRepository.save(customer);
     }
+
+    public void deleteCustomer(Long id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Customer not found with id: " + id
+                        )
+                );
+
+        customerRepository.delete(customer);
+    }
 }

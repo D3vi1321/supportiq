@@ -6,6 +6,7 @@ import com.vcareer.supportiq.dto.CustomerRequest;
 import com.vcareer.supportiq.dto.CustomerUpdateRequest;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -44,5 +45,11 @@ public class CustomerController {
             @Valid @RequestBody CustomerUpdateRequest request) {
 
         return customerService.updateCustomer(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomer(id);
     }
 }
