@@ -1,0 +1,13 @@
+package com.vcareer.supportiq;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SupportiqApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
