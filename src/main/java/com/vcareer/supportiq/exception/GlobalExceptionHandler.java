@@ -27,4 +27,14 @@ public class GlobalExceptionHandler {
                 errors
         );
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ErrorResponse handleResourceNotFoundException(ResourceNotFoundException exception) {
+
+        return new ErrorResponse(
+                404,
+                exception.getMessage(),
+                null
+        );
+    }
 }
