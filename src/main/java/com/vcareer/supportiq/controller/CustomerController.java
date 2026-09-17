@@ -3,6 +3,7 @@ package com.vcareer.supportiq.controller;
 import com.vcareer.supportiq.entity.Customer;
 import com.vcareer.supportiq.service.CustomerService;
 import com.vcareer.supportiq.dto.CustomerRequest;
+import com.vcareer.supportiq.dto.CustomerUpdateRequest;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,5 +36,13 @@ public class CustomerController {
     @GetMapping("/{id}")
     public Customer getCustomerById(@PathVariable Long id) {
         return customerService.getCustomerById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Customer updateCustomer(
+            @PathVariable Long id,
+            @Valid @RequestBody CustomerUpdateRequest request) {
+
+        return customerService.updateCustomer(id, request);
     }
 }

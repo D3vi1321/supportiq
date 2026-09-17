@@ -4,6 +4,7 @@ import com.vcareer.supportiq.entity.Customer;
 import com.vcareer.supportiq.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 import com.vcareer.supportiq.exception.ResourceNotFoundException;
+import com.vcareer.supportiq.dto.CustomerUpdateRequest;
 
 import java.util.List;
 
@@ -31,5 +32,19 @@ public class CustomerService {
                                 "Customer not found with id: " + id
                         )
                 );
+    }
+
+    public Customer updateCustomer(Long id, CustomerUpdateRequest request) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Customer not found with id: " + id
+                        )
+                );
+
+        customer.setName(request.getName());
+        customer.setEmail(request.getEmail());
+
+        return customerRepository.save(customer);
     }
 }
